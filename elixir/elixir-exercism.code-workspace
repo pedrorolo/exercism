@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": "hello-world"
+		},
+		{
+			"path": "bob"
+		},
+		{
+			"path": "nucleotide-count"
+		},
+		{
+			"path": "secret-handshake"
+		},
+		{
+			"path": "rotational-cipher"
+		}
+	],
+	"settings": {}
+}
