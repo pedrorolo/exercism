@@ -24,3 +24,6 @@
 /elixir/**/*.tar
 
 /**/node_modules/**/*
+
+/**/lib/bs/**/*
+/**/*bs.js
