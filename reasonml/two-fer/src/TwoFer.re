@@ -1,5 +1,3 @@
-open Belt
-let twoFer = (name) => {
-    Option.getWithDefault(name,"you")
-      |> (n) => {j|One for $n, one for me.|j};
-}
+open Belt;
+let twoFer = n =>
+  Option.getWithDefault(n, "you") |> (n => {j|One for $n, one for me.|j});
