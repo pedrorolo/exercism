@@ -2,11 +2,9 @@
 name=you
 args=$*
 
-case "$1" in
-*\ *)
+if [[ "$1" =~ .*\ .* ]]; then
   args="$1"
-  ;;
-esac
+fi
 
 if ! [ -z "$args" ]; then
   name=$args
