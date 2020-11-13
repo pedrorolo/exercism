@@ -2,11 +2,8 @@
 name=you
 args=$*
 
-if [[ "$1" =~ .*\ .* ]]; then
-  args="$1"
-fi
+[[ $1 =~ .*\ .* ]] && args="$1"
 
-if ! [ -z "$args" ]; then
-  name=$args
-fi
-echo One for $name, one for me.
+! [[ -z $args ]] && name="$args"
+
+echo "One for $name, one for me."
