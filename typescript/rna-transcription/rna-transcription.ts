@@ -3,14 +3,14 @@ enum DNANuc {
     C = "C",
     G = "G",
     T = "T"
-};
+}
 
 enum RNANuc {
     A = "A",
     C = "C",
     G = "G",
     U = "U"
-};
+}
 
 
 const dnaRnaMap = new Map([
@@ -30,13 +30,13 @@ const strToDNA = (s: string): DNANuc[] =>
                 throw 'Invalid input DNA.'
         })
 
-const rnaNucsToString = (nucs: Array<RNANuc>) => nucs.reduce((s, n) => s + n, "")
+const rnaNucsToString = (nucs: Array<RNANuc>): string => nucs.reduce((s, n) => s + n, "")
 
 
 class Transcriptor {
     toRna(dnaStrand: string): string {
-        let dnaNucs = strToDNA(dnaStrand);
-        let rnaNucs = dnaNucs.map((n) => dnaRnaMap.get(n) as RNANuc);
+        const dnaNucs = strToDNA(dnaStrand);
+        const rnaNucs = dnaNucs.map((n) => dnaRnaMap.get(n) as RNANuc);
         return rnaNucsToString(rnaNucs);
     }
 }
