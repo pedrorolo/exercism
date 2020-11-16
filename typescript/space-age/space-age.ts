@@ -15,25 +15,22 @@ const orbitsInEarthYears: IndexedDict = [
 
 const orbitsInSeconds: IndexedDict = orbitsInEarthYears.map(([p, orbit]) => [p, orbit * earthPeriod])
 
-const orbitsMap = new Map<string, number>(orbitsInSeconds)
-
 const withTwoDecimalDigits = (n: number): number => Math.round(n * 100) / 100
 
-class SpaceAge {
-    constructor(public seconds: number) { }
+interface SpaceAge {
+    [onPlanet: string]: any
+}
 
-    private ageOnPlanet(planet: string): number {
-        const result = this.seconds / (orbitsMap.get(planet) as number)
-        return withTwoDecimalDigits(result);
+const capitalize = (myString: string): string => myString.replace(/^\w/, (c) => c.toUpperCase());
+
+class SpaceAge {
+    constructor(public seconds: number) {
+        orbitsInSeconds.forEach(([planet, orbit]) => {
+            const ageOnPlanet = withTwoDecimalDigits(seconds / orbit);
+            this["on" + capitalize(planet)] = (): number => ageOnPlanet
+        })
     }
-    onEarth(): number { return this.ageOnPlanet("earth") }
-    onMercury(): number { return this.ageOnPlanet("mercury") }
-    onVenus(): number { return this.ageOnPlanet("venus") }
-    onMars(): number { return this.ageOnPlanet("mars") }
-    onJupiter(): number { return this.ageOnPlanet("jupiter") }
-    onSaturn(): number { return this.ageOnPlanet("saturn") }
-    onUranus(): number { return this.ageOnPlanet("uranus") }
-    onNeptune(): number { return this.ageOnPlanet("neptune") }
+
 }
 
 export default SpaceAge;
