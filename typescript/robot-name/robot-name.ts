@@ -1,6 +1,3 @@
-import { getPriority } from "os"
-import { cachedDataVersionTag } from "v8"
-
 type RobotsExistenceDict = {
     [key: string]: boolean
 }
