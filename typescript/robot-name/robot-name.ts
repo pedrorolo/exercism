@@ -1,8 +1,11 @@
+import { match } from "assert"
+
 type RobotsExistenceDict = {
     [key: string]: boolean
 }
 
 const robots: RobotsExistenceDict = {}
+
 
 
 const randomBetween = (x: number, y: number) => {
@@ -30,8 +33,8 @@ const genRandomNumDigit = () => {
 }
 
 const genRobotName = (): string => {
-    const d = () => genRandomNumDigit()
-    const l = () => genRandUpcaseLetter()
+    const d = genRandomNumDigit
+    const l = genRandUpcaseLetter
     const candidate = l() + l() + d() + d() + d()
     if (!robots[candidate]) {
         robots[candidate] = true
