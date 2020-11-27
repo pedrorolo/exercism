@@ -1,12 +1,11 @@
 type Student = string
 type Grade = number
-type GradeString = string
-type StudentRooster = Map<GradeString, Student[]>
+type StudentRooster = Map<string, Student[]>
 type StudentGrades = Map<Student, Grade>
 
-class GradeSchool implements GradeSchool {
+class GradeSchool {
     private studentGrades: StudentGrades
-    constructor() { this.studentGrades = new Map<Student, Grade>() }
+    constructor() { this.studentGrades = new Map() }
     private studentGradeEntries(): [Student, Grade][] {
         return Array.from(this.studentGrades.entries());
     }
@@ -15,7 +14,7 @@ class GradeSchool implements GradeSchool {
             Array.from(new Set(this.studentGrades.values()).values())
                 .sort()
 
-        const emptyStudentsRooster = new Map<GradeString, Student[]>()
+        const emptyStudentsRooster: StudentRooster = new Map()
 
         const gradesReducer =
             (rooster: StudentRooster, grade: Grade): StudentRooster =>
