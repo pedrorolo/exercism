@@ -4,12 +4,6 @@ type GradeString = string
 type StudentRooster = Map<GradeString, Student[]>
 type StudentGrades = Map<Student, Grade>
 
-interface GradeSchool {
-    studentRoster(): StudentRooster
-    addStudent(s: Student, g: Grade): void
-    studentsInGrade(g: Grade): Student[]
-}
-
 class GradeSchool implements GradeSchool {
     private studentGrades: StudentGrades
     constructor() { this.studentGrades = new Map<Student, Grade>() }
