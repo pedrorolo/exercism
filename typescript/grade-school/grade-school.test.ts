@@ -78,4 +78,12 @@ describe('School', () => {
     expect(gradeSchool.studentRoster()).toEqual(expectedDb)
   })
 
+  it("A student can't be in two different grades", () => {
+    gradeSchool.addStudent('Aimee', 2)
+    gradeSchool.addStudent('Aimee', 1)
+
+    const emptyGrade = gradeSchool.studentsInGrade(2)
+    const expectedDb = new Map(Object.entries({ 2: ['Aimee'] }))
+    expect(emptyGrade).toEqual([])
+  })
 })
