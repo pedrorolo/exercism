@@ -1,10 +1,3 @@
-interface IClock {
-    toString: () => string
-    plus: (minutes: number) => IClock
-    minus: (minutes: number) => IClock
-    equals: (clock: IClock) => boolean
-}
-
 type ClockStruct = { hours: number, minutes: number }
 
 
@@ -28,7 +21,7 @@ const balance = (hours: number, minutes: number): ClockStruct => {
 
 const padTwoDigitNumber = (n: number): string => n >= 10 ? "" + n : "0" + n;
 
-export default class Clock implements IClock {
+export default class Clock {
     constructor(private hours: number, private minutes = 0) {
         const { hours: hs, minutes: ms } = balance(hours, minutes)
         this.hours = hs
@@ -37,16 +30,16 @@ export default class Clock implements IClock {
     toString(): string {
         return `${padTwoDigitNumber(this.hours)}:${padTwoDigitNumber(this.minutes)}`
     }
-    plus(minutes: number): IClock {
+    plus(minutes: number): Clock {
         const { hours: hs, minutes: ms } = balance(this.hours, this.minutes + minutes)
         this.hours = hs
         this.minutes = ms
         return this;
     }
-    minus(minutes: number): IClock {
+    minus(minutes: number): Clock {
         return this.plus(-minutes)
     }
-    equals(clock: IClock): boolean {
+    equals(clock: Clock): boolean {
         return this.toString() == clock.toString()
     }
 }
