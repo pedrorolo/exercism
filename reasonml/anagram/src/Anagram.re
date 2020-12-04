@@ -1,5 +1,4 @@
 let (>>) = (f, g, x) => g(f(x));
-let flip = (f, x, y) => f(y, x);
 
 module String = {
   include String;
