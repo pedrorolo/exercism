@@ -1,11 +1,4 @@
-function gcd(a: number, b: number): number {
-    const [x, y] = [Math.abs(a), Math.abs(b)]
-    const [big, small] = x >= y ? [x, y] : [y, x];
-    let candidate = small
-    while (((big % candidate) != 0 || (small % candidate != 0)) && candidate != 0)
-        candidate--;
-    return candidate || 1;
-}
+const gcd = (a: number, b: number): number => b === 0 ? a : gcd(b, a % b);
 
 type Pair = [number, number]
 
@@ -63,7 +56,10 @@ export default class Rational {
 
     expreal(x: number): number {
         const [a, b] = this.asPair()
-        return Math.pow(x ** a, 1 / b)
+        // See https://en.wikipedia.org/wiki/Nth_root#Logarithmic_calculation
+        // Using logarithmic calculation gets us the precision necessary to pass
+        // the test "Raise a real number to a positive rational number".
+        return 2 ** (Math.log2(x ** a) / b);
     }
     reduce(): Rational {
         return this.map((p) => p)
