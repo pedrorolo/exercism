@@ -2,9 +2,6 @@
 type char = string;
 
 const cc = (e: char): number => e.charCodeAt(0)
-const c: (cc: number) => char = String.fromCharCode
-const cz = cc('z')
-const ca = cc('a')
 
 const range = (start: number, end: number) =>
     Array.from(Array((end - start) + 1).keys()).map((k) => k + start)
@@ -26,9 +23,6 @@ const unshiftChar = (offset: number, input: char): char => shiftChar(-offset, in
 type Key = string;
 
 const randomChar = () => alphabet[Math.floor(Math.random() * alphabet.length)]
-
-
-
 
 class SimpleCipher {
     public key: Key
