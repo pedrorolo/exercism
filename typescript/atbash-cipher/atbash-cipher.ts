@@ -17,11 +17,11 @@ const charRange = (a: char, b: char): char[] => codesChrs(...intRange(
 
 
 const lowerCaseAlphabet: alphabet = charRange('a', 'z')
-const upperCaseAlphabet: alphabet = charRange('A', 'Z')
 
-const encodeFromAlphabet = (c: char, a: alphabet): Option<char> => {
+const encodeLetter = (c: char): Option<char> => {
+    const a = lowerCaseAlphabet
     const idx = a.indexOf(c)
-    return idx != -1 ? a[a.length - idx - 1] : null
+    return idx != -1 ? a[a.length - 1 - idx] : null
 }
 
 const splitIntoGroupsOf5 = (a: Array<char>): string => {
@@ -37,15 +37,14 @@ const splitIntoGroupsOf5 = (a: Array<char>): string => {
     return a.reduce(reducer, []).join(" ");
 }
 
-const encodeFromNumber =
+const encodeNumber =
     (c: char): Option<char> =>
         charRange("0", "9").includes(c) && c || null
 
 
-const encodeChar = (c: char): Option<char> =>
-    (encodeFromAlphabet(c, upperCaseAlphabet)
-        || encodeFromAlphabet(c, lowerCaseAlphabet))?.toLowerCase()
-    || encodeFromNumber(c) || null
+const encodeChar = (c: char): Option<char> => (
+    encodeLetter(c.toLowerCase())
+    || encodeNumber(c))
 
 const decodeChar = encodeChar
 
