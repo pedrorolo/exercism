@@ -49,7 +49,6 @@ fn test_an_even_sized_word() {
 }
 
 #[test]
-#[ignore]
 /// wide characters
 fn test_wide_characters() {
     process_reverse_case("子猫", "猫子");
