@@ -13,18 +13,16 @@ impl Clock {
 
     pub fn add_minutes(&self, minutes: i32) -> Self {
       let total_minutes_from_hour = self.minutes + minutes;
-      let hours_incremented =self.add_hours(total_minutes_from_hour / 60);
       Self {
-        hours: hours_incremented.hours, 
-        minutes: total_minutes_from_hour % 60
+        minutes: total_minutes_from_hour % 60,
+        ..self.add_hours(total_minutes_from_hour / 60)
       }
     }
 
     fn add_hours(&self, hours: i32) -> Self {
-      let total_hours = self.hours + hours;
       Self {
-        hours: total_hours % 24,
-        minutes: self.minutes
+        hours: (self.hours + hours) % 24,
+        ..*self
       }
     }
 }
