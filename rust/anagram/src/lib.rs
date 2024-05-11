@@ -3,7 +3,7 @@ use std;
 
 pub fn anagrams_for<'a>(word: &'a str, possible_anagrams: &'a [&str]) -> HashSet<&'a str> {
   let word_chars= HashSet::from_iter(word.chars());
-  possible_anagrams.into_iter()
+  possible_anagrams.iter()
                    .filter(|w| has_chars(&word_chars, w))
                     .copied()
                     .collect()
