@@ -1,7 +1,7 @@
 use std::collections::HashSet;
 use std;
 
-pub fn anagrams_for<'a>(word: &str, possible_anagrams: &'a [&str]) -> HashSet<&'a str> {
+pub fn anagrams_for<'a>(word: &'a str, possible_anagrams: &'a [&str]) -> HashSet<&'a str> {
   let word_chars= HashSet::from_iter(word.chars());
   possible_anagrams.into_iter()
                    .filter(|w| has_chars(&word_chars, w))
