@@ -12,7 +12,7 @@ impl Duration{
     match self {
       &Duration::Seconds(seconds) => seconds as f64,
       &Duration::Days(days) => (days * 24.0 * 60.0 * 60.0).round(),
-      &Duration::Years(years) => (years * (Earth::sideral_period().seconds() as f64)).round()
+      &Duration::Years(years) => (years * (Earth::SIDERAL_PERIOD.seconds() as f64)).round()
     }.round() as u64
   }
 }
@@ -25,9 +25,9 @@ impl From<u64> for Duration{
 
 pub trait Planet {
     fn years_during(d: &Duration) -> f64 {
-      d.seconds() as f64 / Self::sideral_period().seconds() as f64
+      d.seconds() as f64 / Self::SIDERAL_PERIOD.seconds() as f64
     }
-    fn sideral_period() -> Duration;
+    const SIDERAL_PERIOD: Duration;
 }
 
 pub struct Mercury;
@@ -40,26 +40,26 @@ pub struct Uranus;
 pub struct Neptune;
 
 impl Planet for Mercury {
-  fn sideral_period() -> Duration  { Duration::Days(87.97) }
+  const SIDERAL_PERIOD: Duration = Duration::Days(87.97);
 }
 impl Planet for Venus {
-  fn sideral_period() -> Duration { Duration::Days(224.70) }
+  const SIDERAL_PERIOD: Duration = Duration::Days(224.70);
 }
 impl Planet for Earth {
-  fn sideral_period() -> Duration { Duration::Days(365.26) }
+  const SIDERAL_PERIOD: Duration = Duration::Days(365.26);
 }
 impl Planet for Mars {
-  fn sideral_period() -> Duration { Duration::Days(686.98) }
+  const SIDERAL_PERIOD: Duration = Duration::Days(686.98);
 }
 impl Planet for Jupiter {
-  fn sideral_period() -> Duration { Duration::Years(11.86)  }
+  const SIDERAL_PERIOD: Duration = Duration::Years(11.86);
 }
 impl Planet for Saturn {
-  fn sideral_period() -> Duration { Duration::Years(29.46) }
+  const SIDERAL_PERIOD: Duration = Duration::Years(29.46);
 }
 impl Planet for Uranus {
-  fn sideral_period() -> Duration { Duration::Years(84.01) }
+  const SIDERAL_PERIOD: Duration = Duration::Years(84.01);
 }
 impl Planet for Neptune {
-  fn sideral_period() -> Duration { Duration::Years(164.79) }
+  const SIDERAL_PERIOD: Duration = Duration::Years(164.79);
 }
